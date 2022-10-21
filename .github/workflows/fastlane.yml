@@ -24,3 +24,5 @@ jobs:
       uses: it-boyer/UnitDemo@main
       with:
         argOne: 'build'
+    - name: 使用Unit
+      run: Unit lane hello
