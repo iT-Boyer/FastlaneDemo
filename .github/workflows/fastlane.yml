@@ -20,4 +20,4 @@ jobs:
       with:
         argOne: 'build'
     - name: 使用swiftlane
-      run: swifttlane lane hello name 小明 say 你好
+      run: swifttlane lane swiftTest
