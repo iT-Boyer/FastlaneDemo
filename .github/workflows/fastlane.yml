@@ -20,4 +20,4 @@ jobs:
       with:
         argOne: 'build'
     - name: 执行脚本
-      run: UnitDemo lane hello
+      run: echo $GITHUB_PATH && pwd && ls && UnitDemo lane hello
