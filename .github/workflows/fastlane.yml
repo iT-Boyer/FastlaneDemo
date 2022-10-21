@@ -11,11 +11,11 @@ jobs:
   unit_tests:
     runs-on: macos-latest
     steps:
-    # - name: Setup Swift
-      # uses: swift-actions/setup-swift@v1.18.0
+    - name: Setup Swift
+      uses: swift-actions/setup-swift@v1.18.0
     - name: Repository checkout
       uses: actions/checkout@v2
-    - name: hhh
-      uses: it-boyer/UnitDemo@main #使用本地文件action
+    - name: Build for macOS
+      uses: it-boyer/UnitDemo@main
       with:
-          who-to-greet: 'Mona the Octocat'
+        argOne: 'build'
