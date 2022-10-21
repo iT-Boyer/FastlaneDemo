@@ -15,7 +15,7 @@ jobs:
       uses: swift-actions/setup-swift@v1.18.0
     - name: Repository checkout
       uses: actions/checkout@v2
-    - name: Build for macOS
-      uses: it-boyer/UnitDemo@main
+    - name: hhh
+      uses: it-boyer/UnitDemo@main #使用本地文件action
       with:
-        argOne: 'build'
+          who-to-greet: 'Mona the Octocat'
