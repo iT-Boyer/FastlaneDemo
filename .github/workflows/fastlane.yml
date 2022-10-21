@@ -13,10 +13,10 @@ jobs:
     steps:
     - name: Setup Swift
       uses: swift-actions/setup-swift@v1.18.0
-    - name: 使用swift命令,打印swfit版本
-      run: |
-        swift --version
-      shell: swift {0}  #swift must be installed on the runne
+   # - name: 使用swift命令,打印swfit版本
+      #run: |
+   #     swift --version
+   #   shell: swift {0}  #swift must be installed on the runne
 
     - name: Repository checkout
       uses: actions/checkout@v2
