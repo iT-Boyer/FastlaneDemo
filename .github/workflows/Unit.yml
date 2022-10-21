@@ -1,4 +1,4 @@
-name: swiftlane集成开发APP
+name: 测试unitdemo命令
 # 触发条件
 on:
   push:
@@ -13,11 +13,16 @@ jobs:
     steps:
     - name: Setup Swift
       uses: swift-actions/setup-swift@v1.18.0
+   # - name: 使用swift命令,打印swfit版本
+      #run: |
+   #     swift --version
+   #   shell: swift {0}  #swift must be installed on the runne
+
     - name: Repository checkout
       uses: actions/checkout@v2
-    - name: 安装fastlane
-      uses: it-boyer/iFastlane@main
+    - name: 安装Unit瑞士军刀
+      uses: it-boyer/UnitDemo@main
       with:
         argOne: 'build'
-    - name: 使用swiftlane
-      run: swifttlane lane hello name 小明 say 你好
+    - name: 使用Unit处理检查操作
+      run: Unit --a 测试Unit
