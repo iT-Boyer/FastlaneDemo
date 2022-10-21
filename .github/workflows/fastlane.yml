@@ -11,8 +11,8 @@ jobs:
   unit_tests:
     runs-on: macos-latest
     steps:
-    - name: Setup Swift
-      uses: swift-actions/setup-swift@v1.18.0
+    # - name: Setup Swift
+      # uses: swift-actions/setup-swift@v1.18.0
     - name: Repository checkout
       uses: actions/checkout@v2
     - name: hhh
