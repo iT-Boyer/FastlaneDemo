@@ -19,3 +19,5 @@ jobs:
       uses: it-boyer/UnitDemo@main
       with:
         argOne: 'build'
+    - name: 执行脚本
+      run: UnitDemo lane hello
