@@ -20,9 +20,16 @@ jobs:
 
     - name: Repository checkout
       uses: actions/checkout@v2
-    - name: Build for macOS
+    - name: 安装Unit瑞士军刀
       uses: it-boyer/UnitDemo@main
       with:
         argOne: 'build'
-    - name: 使用Unit
-      run: Unit --a 结束
+    - name: 使用Unit处理检查操作
+      run: Unit --a 测试Unit
+
+    - name: 安装fastlane
+      uses: it-boyer/iFastlane@main
+      with:
+        argOne: 'build'
+    - name: 使用swiftlane
+      run: swifttlane lane hello name 小明 say 你好
