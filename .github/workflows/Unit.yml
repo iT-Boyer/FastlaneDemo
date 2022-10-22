@@ -35,8 +35,8 @@ jobs:
     - name: 恢复环境变量
       shell: bash
       run: |
-        echo "/Users/runner/work/_actions/it-boyer/Unit/main" >> $GITHUB_PATH
-        cd /Users/runner/work/_actions/it-boyer/Unit/main
+        echo "/Users/runner/work/_actions/it-boyer/UnitDemo/main" >> $GITHUB_PATH
+        cd /Users/runner/work/_actions/it-boyer/UnitDemo/main
         brew bundle
 
     #使用Unit工具
