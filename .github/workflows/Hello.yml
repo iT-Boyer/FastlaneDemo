@@ -20,8 +20,10 @@ jobs:
     - name: shell默认目录
       run: |
         pwd
+        ls -al
         mkdir testdir
         echo "使用暂存" >> testdir/cache.txt
+        cat testdir/catche.txt
         ls -al
     - name: 使用cache
       id: cache-unitdemo
