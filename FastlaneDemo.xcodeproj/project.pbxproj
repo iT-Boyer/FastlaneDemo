@@ -195,13 +195,16 @@
 				TargetAttributes = {
 					B3B00E732902274D0067783D = {
 						CreatedOnToolsVersion = 14.0.1;
+						ProvisioningStyle = Automatic;
 					};
 					B3B00E832902274F0067783D = {
 						CreatedOnToolsVersion = 14.0.1;
+						ProvisioningStyle = Automatic;
 						TestTargetID = B3B00E732902274D0067783D;
 					};
 					B3B00E8D2902274F0067783D = {
 						CreatedOnToolsVersion = 14.0.1;
+						ProvisioningStyle = Automatic;
 						TestTargetID = B3B00E732902274D0067783D;
 					};
 				};
@@ -417,6 +420,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"FastlaneDemo/Preview Content\"";
+				DEVELOPMENT_TEAM = 2C4H9T5RF5;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -445,6 +449,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"FastlaneDemo/Preview Content\"";
+				DEVELOPMENT_TEAM = 2C4H9T5RF5;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
