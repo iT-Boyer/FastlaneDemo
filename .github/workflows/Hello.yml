@@ -11,7 +11,7 @@ on:
 jobs:
   Unit_job:
     runs-on: macos-latest
-    default:
+    defaults:
       run:
         working-directory: ~/hsg/
     steps:
