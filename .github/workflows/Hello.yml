@@ -20,33 +20,28 @@ jobs:
     - name: shell默认目录
       run: |
         pwd
+        cat testdir/catche.txt
         mkdir testdir
         echo "使用暂存" >> testdir/cache.txt
         ls -al
-    # - name: 使用cache
-    #   id: cache-swiftlane
-    #   uses: actions/cache@v3
-    #   env:
-    #     cache-name: cache13
-    #     path: testdir
-    #     key: ${{ runner.os }}-spm-${{ hashFiles('**/Package.resolved') }}
-    #     restore-keys: |
-    #         ${{ runner.os }}-build-${{ env.cache-name }}-
-    #         ${{ runner.os }}-build-
-    #         ${{ runner.os }}-
-    - uses: actions/cache@v3
+    - name: 使用cache
+      id: cache-unitdemo
+      uses: actions/cache@v3
+      env:
+        cache-name: cache-unitdemo
       with:
         path: |
-          ~/work
-        key: ${{ runner.os }}-workflow
+          testdir
+        key: ${{ runner.os }}-${{ env.cache-name }}
 
-    - uses: actions/cache@v3
+    - name: 暂存 swift
+      uses: actions/cache@v3
       with:
         path: .build
         key: ${{ runner.os }}-spm-${{ hashFiles('**/Package.resolved') }}
         restore-keys: |
           ${{ runner.os }}-spm-
 
-    - if: ${{ steps.cache-swiftlane.outputs.cache-hit != 'true' }}
+    - if: ${{ steps.cache-unitdemo.outputs.cache-hit != 'true' }}
       name: 无缓存记录
       run: ls -al
