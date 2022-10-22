@@ -11,9 +11,6 @@ on:
 jobs:
   Unit_job:
     runs-on: macos-latest
-    default:
-      run:
-        working-directory: ~/hsg/
     steps:
     - name: Setup Swift
       uses: swift-actions/setup-swift@v1.18.0
