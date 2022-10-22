@@ -2,11 +2,11 @@ name: 测试unitdemo命令
 # 触发条件
 on:
   workflow_dispatch:
-  # push:
-  #   branches: [ main ]
-  # pull_request:
-  #   branches:
-      # - '*'
+  push:
+    branches: [ main ]
+  pull_request:
+    branches:
+     - '*'
 # 执行的任务
 jobs:
   Unit_job:
@@ -17,32 +17,23 @@ jobs:
     steps:
     - name: Setup Swift
       uses: swift-actions/setup-swift@v1.18.0
-   # - name: 使用swift命令,打印swfit版本
-      #run: |
-   #     swift --version
-   #   shell: swift {0}  #swift must be installed on the runne
-
     - name: Repository checkout
       uses: actions/checkout@v2
-    - name: 安装Unit瑞士军刀
+    - name: 执行UnitDemo暂存操作
+      id: cache-unitdemo
+      uses: actions/cache@v3
+      with:
+        path: |
+          ~/work/_actions/it-boyer/UnitDemo/main
+        key: ${{ runner.os }}-spm-${{ hashFiles('**/Package.resolved') }}
+        restore-keys: |
+          ${{ runner.os }}-spm-
+    #判断unit是否安装
+    - if: ${{ steps.cache-unitdemo.outputs.cache-hit != 'true' }}
+      name: 安装Unit瑞士军刀
       uses: it-boyer/UnitDemo@main
       with:
         argOne: 'build'
+    #使用Unit工具
     - name: 使用Unit处理检查操作
       run: Unit --a 测试Unit
-    - name: 使用cache
-      id: cache-swiftlane
-      uses: actions/cache@v3
-      env:
-        cache-name: cache-UnitDemo
-        #/Users/runner/work/_actions/it-boyer/UnitDemo/main/Sources/UnitLib/Test
-        path: ~/work/_actions/it-boyer/UnitDemo/main
-        key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/Package.swift') }}
-        restore-keys: |
-            ${{ runner.os }}-build-${{ env.cache-name }}-
-            ${{ runner.os }}-build-
-            ${{ runner.os }}-
-
-    - if: ${{ steps.cache-npm.outputs.cache-hit != 'true' }}
-      name: 测试暂存
-      run: ls -al

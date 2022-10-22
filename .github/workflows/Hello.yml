@@ -17,32 +17,39 @@ jobs:
     steps:
     - name: Repository checkout
       uses: actions/checkout@v2
-    - name: 使用cache
-      id: cache-unitdemo
+    - name: cache恢复备份
+      id: cache-hello
       uses: actions/cache@v3
       env:
-        cache-name: cache-unitdemo
+        cache-name: cache-hello
       with:
         path: |
           ~/testdir
         key: ${{ runner.os }}-${{ env.cache-name }}
-    - name: shell默认目录
-      run: |
-        pwd
-        ls -al
-        mkdir testdir
-        echo "使用暂存" >> testdir/cache.txt
-        cat testdir/cache.txt
-        ls -al
 
-    - name: 暂存 swift
+    - if: ${{ steps.cache-hello.outputs.cache-hit != 'true' }}
+      name: 还没有暂存过
+      run: |
+        mkdir testdir
+        echo "写入第一次暂存" >> testdir/cache.txt
+    - name: 查看上一次暂存的信息
+      run: |
+        cat testdir/cache.txt
+
+    - name: 执行swift-spm暂存操作
       uses: actions/cache@v3
       with:
-        path: .build
+        path: .build  #暂存项目内容
         key: ${{ runner.os }}-spm-${{ hashFiles('**/Package.resolved') }}
         restore-keys: |
           ${{ runner.os }}-spm-
 
-    - if: ${{ steps.cache-unitdemo.outputs.cache-hit != 'true' }}
-      name: 无缓存记录
-      run: ls -al
+    - name: 执行UnitDemo暂存操作
+      id: cache-unitdemo
+      uses: actions/cache@v3
+      with:
+        path: |
+          ~/work/_actions/it-boyer/UnitDemo/main
+        key: ${{ runner.os }}-spm-${{ hashFiles('**/Package.resolved') }}
+        restore-keys: |
+          ${{ runner.os }}-spm-
