@@ -13,7 +13,7 @@ jobs:
     runs-on: macos-latest
     defaults:
       run:
-        working-directory: /Users/runner
+        working-directory: /Users/runner/work
     steps:
     - name: Repository checkout
       uses: actions/checkout@v2
@@ -28,12 +28,24 @@ jobs:
       uses: actions/cache@v3
       env:
         cache-name: cache-testdir
-        path: hsg/testdir
+        path: testdir
         key: ${{ runner.os }}-build-${{ env.cache-name }}
         restore-keys: |
             ${{ runner.os }}-build-${{ env.cache-name }}-
             ${{ runner.os }}-build-
             ${{ runner.os }}-
+    - uses: actions/cache@v3
+      with:
+        path: |
+          ~/work
+        key: ${{ runner.os }}-workflow
+
+    - uses: actions/cache@v3
+      with:
+        path: .build
+        key: ${{ runner.os }}-spm-${{ hashFiles('**/Package.resolved') }}
+        restore-keys: |
+          ${{ runner.os }}-spm-
 
     - if: ${{ steps.cache-swiftlane.outputs.cache-hit != 'true' }}
       name: 无缓存记录
