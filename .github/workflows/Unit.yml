@@ -34,5 +34,8 @@ jobs:
     #使用Unit工具
     - name: 使用Unit处理检查操作
       run: |
-        echo "/Users/runner/work/_actions/it-boyer/UnitDemo/main" >> $GITHUB_PATH
+        # 暂存无法对环境变量设置，不知道如何获取action路径,目前手动设置
+        #echo "${{ github.action_path }}" >> $GITHUB_PATH
+        echo $GITHUB
+        echo /Users/runner/work/_actions/it-boyer/UnitDemo/main >> $GITHUB_PATH
         Unit --a 测试Unit

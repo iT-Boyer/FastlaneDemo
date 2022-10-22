@@ -32,4 +32,7 @@ jobs:
         argOne: 'build'
     - name: 使用swiftlane
       run: |
+        # 暂存无法对环境变量设置，不知道如何获取action路径,目前手动设置
+        #echo "${{ github.action_path }}" >> $GITHUB_PATH
+        echo "/Users/runner/work/_actions/it-boyer/iFastlane/main" >> $GITHUB_PATH
         swifttlane lane swiftTest
