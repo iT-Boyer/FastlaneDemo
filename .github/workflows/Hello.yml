@@ -11,11 +11,27 @@ on:
 jobs:
   hello_job:
     runs-on: macos-latest
-    # defaults:
-      # run:
-        # working-directory: /Users/runner
+    defaults:
+      run:
+        working-directory: /Users/runner
     steps:
     - name: Repository checkout
       uses: actions/checkout@v2
-    - name: 远程文件脚本
-      run: .github/remote-run it-boyer/UnitDemo Unit
+    - name: cache恢复备份
+      id: cache-hello
+      uses: actions/cache@v3
+      env:
+        cache-name: cache-hello
+      with:
+        path: |
+          ~/testdir
+        key: ${{ runner.os }}-${{ env.cache-name }}
+
+    - if: ${{ steps.cache-hello.outputs.cache-hit != 'true' }}
+      name: 还没有暂存过
+      run: |
+        mkdir testdir
+        echo "写入第一次暂存" >> testdir/cache.txt
+    - name: 查看上一次暂存的信息
+      run: |
+        cat testdir/cache.txt

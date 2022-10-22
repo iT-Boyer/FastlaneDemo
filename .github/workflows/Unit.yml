@@ -16,6 +16,8 @@ jobs:
       uses: swift-actions/setup-swift@v1.18.0
     - name: Repository checkout
       uses: actions/checkout@v2
+    - name: 远程文件脚本
+      run: .github/remote-run it-boyer/UnitDemo Unit
     - name: 执行UnitDemo暂存操作
       id: cache-unitdemo
       uses: actions/cache@v3
