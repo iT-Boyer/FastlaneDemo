@@ -24,7 +24,7 @@ jobs:
       with:
         path: |
           ~/work/_actions/it-boyer/iFastlane/main
-        key: ${{ runner.os }}-spm-${{ hashFiles('**/Package.resolved') }}
+        key: ${{ runner.os }}-spm-${{ hashFiles('/Users/runner/work/_actions/it-boyer/iFastlane/main/Package.resolved') }}
         restore-keys: |
           ${{ runner.os }}-spm-swiftlane
     - if: ${{ steps.cache-swiftlane.outputs.cache-hit != 'true' }}
