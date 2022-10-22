@@ -31,11 +31,12 @@ jobs:
       uses: it-boyer/UnitDemo@main
       with:
         argOne: 'build'
+    - name: 恢复环境变量
+      shell: bash
+      run: echo $GITHUB_PATH && echo "测试：${{ github.action_path }}" && echo "/Users/runner/work/_actions/it-boyer/UnitDemo/main" >> $GITHUB_PATH
     #使用Unit工具
     - name: 使用Unit处理检查操作
       run: |
         # 暂存无法对环境变量设置，不知道如何获取action路径,目前手动设置
         #echo "${{ github.action_path }}" >> $GITHUB_PATH
-        echo $GITHUB
-        echo /Users/runner/work/_actions/it-boyer/UnitDemo/main >> $GITHUB_PATH
         Unit --a 测试Unit
