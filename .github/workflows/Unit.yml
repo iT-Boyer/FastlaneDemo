@@ -38,7 +38,6 @@ jobs:
         echo "/Users/runner/work/_actions/it-boyer/UnitDemo/main" >> $GITHUB_PATH
         cd /Users/runner/work/_actions/it-boyer/UnitDemo/main
         brew bundle
-
     #使用Unit工具
     - name: 使用Unit处理检查操作
       run: Unit --a 测试Unit
