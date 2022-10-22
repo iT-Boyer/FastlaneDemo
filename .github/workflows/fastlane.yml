@@ -17,6 +17,7 @@ jobs:
     - name: Repository checkout
       uses: actions/checkout@v2
     - name: swiftlane更新
+      id: swiftlane
       uses: it-boyer/iFastlane@main
     - name: 执行swiftlane暂存操作
       id: cache-swiftlane
@@ -27,6 +28,13 @@ jobs:
         key: ${{ runner.os }}-spm-${{ hashFiles('/Users/runner/work/_actions/it-boyer/iFastlane/main/Package.resolved') }}
         restore-keys: |
           ${{ runner.os }}-spm-swiftlane
+    - name: 测试hashFiles方法
+      run: |
+        echo 1: ${{ hashFiles('/Users/runner/work/_actions/it-boyer/iFastlane/main/Package.resolved') }}
+        echo 2: ${{ hashFiles('**/ContentView.swift') }}
+        echo 3: ${{ hashFiles('/work/_actions/it-boyer/iFastlane/main/Package.resolved') }}
+        echo 4: ${{ steps.swiftlane.outputs.swiftlane-hash }}
+      shell: bash
     - if: ${{ steps.cache-swiftlane.outputs.cache-hit != 'true' }}
       name: 安装swiftlane
       uses: it-boyer/iFastlane@main
