@@ -35,3 +35,11 @@ jobs:
     - name: 查看上一次暂存的信息
       run: |
         cat testdir/cache.txt
+
+    - name: 打印swift版本
+      run: swift --version
+      shell: bash
+    - name: 执行swift
+      run: |
+        print("我是swift打印出来的")
+      shell: swift {0}
