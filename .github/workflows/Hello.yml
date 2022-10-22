@@ -18,4 +18,4 @@ jobs:
     - name: Repository checkout
       uses: actions/checkout@v2
     - name: 远程文件脚本
-      run: .github/remote-run it-boyer/UnitDemo Unit --a 我是远程swift脚本
+      run: .github/remote-run it-boyer/UnitDemo Unit
