@@ -37,6 +37,6 @@ jobs:
         cat testdir/cache.txt
     - name: brew 安装
       run: |
-        /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+        #/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
         brew install xcbeautify
-        brew config
+        # brew config
