@@ -13,7 +13,7 @@ jobs:
     runs-on: macos-latest
     defaults:
       run:
-        working-directory: /Users/runner/work
+        working-directory: /Users/runner
     steps:
     - name: Repository checkout
       uses: actions/checkout@v2
@@ -23,7 +23,7 @@ jobs:
         ls -al
         mkdir testdir
         echo "使用暂存" >> testdir/cache.txt
-        cat testdir/catche.txt
+        cat testdir/cache.txt
         ls -al
     - name: 使用cache
       id: cache-unitdemo
