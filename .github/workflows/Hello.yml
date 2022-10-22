@@ -23,17 +23,17 @@ jobs:
         mkdir testdir
         echo "使用暂存" >> testdir/cache.txt
         ls -al
-    - name: 使用cache
-      id: cache-swiftlane
-      uses: actions/cache@v3
-      env:
-        cache-name: cache13
-        path: testdir
-        key: ${{ runner.os }}-spm-${{ hashFiles('**/Package.resolved') }}
-        restore-keys: |
-            ${{ runner.os }}-build-${{ env.cache-name }}-
-            ${{ runner.os }}-build-
-            ${{ runner.os }}-
+    # - name: 使用cache
+    #   id: cache-swiftlane
+    #   uses: actions/cache@v3
+    #   env:
+    #     cache-name: cache13
+    #     path: testdir
+    #     key: ${{ runner.os }}-spm-${{ hashFiles('**/Package.resolved') }}
+    #     restore-keys: |
+    #         ${{ runner.os }}-build-${{ env.cache-name }}-
+    #         ${{ runner.os }}-build-
+    #         ${{ runner.os }}-
     - uses: actions/cache@v3
       with:
         path: |
