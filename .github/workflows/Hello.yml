@@ -32,7 +32,7 @@ jobs:
         cache-name: cache-unitdemo
       with:
         path: |
-          testdir
+          ~/testdir
         key: ${{ runner.os }}-${{ env.cache-name }}
 
     - name: 暂存 swift
