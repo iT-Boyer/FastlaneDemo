@@ -1,6 +1,7 @@
 name: 测试unitdemo命令
 # 触发条件
 on:
+  workflow_dispatch:
   push:
     branches: [ main ]
   pull_request:
@@ -26,3 +27,19 @@ jobs:
         argOne: 'build'
     - name: 使用Unit处理检查操作
       run: Unit --a 测试Unit
+    - name: 使用cache
+      id: cache-swiftlane
+      uses: actions/cache@v3
+      env:
+        cache-name: cache-UnitDemo
+        #/Users/runner/work/_actions/it-boyer/UnitDemo/main/Sources/UnitLib/Test
+        path: ~/work/_actions/it-boyer/UnitDemo/main
+        key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/Package.swift') }}
+        restore-keys: |
+            ${{ runner.os }}-build-${{ env.cache-name }}-
+            ${{ runner.os }}-build-
+            ${{ runner.os }}-
+
+    - if: ${{ steps.cache-npm.outputs.cache-hit != 'true' }}
+      name: 测试暂存
+      run: ls -al
