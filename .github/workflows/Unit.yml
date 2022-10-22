@@ -34,7 +34,11 @@ jobs:
     # 暂存无法对环境变量设置，不知道如何获取action路径,目前手动设置
     - name: 恢复环境变量
       shell: bash
-      run: echo "/Users/runner/work/_actions/it-boyer/UnitDemo/main" >> $GITHUB_PATH
+      run: |
+        echo "/Users/runner/work/_actions/it-boyer/Unit/main" >> $GITHUB_PATH
+        cd /Users/runner/work/_actions/it-boyer/Unit/main
+        brew bundle
+
     #使用Unit工具
     - name: 使用Unit处理检查操作
       run: Unit --a 测试Unit

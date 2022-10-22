@@ -31,10 +31,10 @@ jobs:
       with:
         argOne: 'build'
     # 暂存无法对环境变量设置，不知道如何获取action路径,目前手动设置
-    - name: 恢复环境变量
-      shell: bash
-      run: echo "/Users/runner/work/_actions/it-boyer/iFastlane/main" >> $GITHUB_PATH
-    - name: 使用swiftlane
+    - name: 恢复环境变量,安装brew插件
       run: |
-        ls -al /Users/runner/work/_actions/it-boyer/iFastlane/main
-        swifttlane lane swiftTest
+        echo "/Users/runner/work/_actions/it-boyer/iFastlane/main" >> $GITHUB_PATH
+        cd /Users/runner/work/_actions/it-boyer/iFastlane/main
+        brew bundle
+    - name: 使用swiftlane
+      run: swifttlane lane swiftTest
