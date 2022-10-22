@@ -11,9 +11,9 @@ on:
 jobs:
   hello_job:
     runs-on: macos-latest
-    defaults:
-      run:
-        working-directory: /Users/runner
+    # defaults:
+      # run:
+        # working-directory: /Users/runner
     steps:
     - name: Repository checkout
       uses: actions/checkout@v2
