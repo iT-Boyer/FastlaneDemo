@@ -33,4 +33,6 @@ jobs:
         argOne: 'build'
     #使用Unit工具
     - name: 使用Unit处理检查操作
-      run: Unit --a 测试Unit
+      run: |
+        ls -al /Users/runner/work/_actions/it-boyer/UnitDemo/main
+        Unit --a 测试Unit
