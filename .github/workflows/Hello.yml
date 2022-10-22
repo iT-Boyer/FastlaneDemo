@@ -20,9 +20,9 @@ jobs:
     - name: shell默认目录
       run: |
         pwd
+        mkdir testdir
+        echo "使用暂存" >> testdir/cache.txt
         ls -al
-        mkdir testdir/
-        echo "使用暂存" >> ~/testdir/cache.txt
     - name: 使用cache
       id: cache-swiftlane
       uses: actions/cache@v3
