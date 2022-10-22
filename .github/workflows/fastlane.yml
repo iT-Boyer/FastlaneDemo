@@ -1,11 +1,12 @@
 name: swiftlane集成开发APP
 # 触发条件
 on:
-  push:
-    branches: [ main ]
-  pull_request:
-    branches:
-      - '*'
+  workflow_dispatch:
+  # push:
+  #   branches: [ main ]
+  # pull_request:
+  #   branches:
+      # - '*'
 # 执行的任务
 jobs:
   swiftlane:
@@ -15,6 +16,21 @@ jobs:
       uses: swift-actions/setup-swift@v1.18.0
     - name: Repository checkout
       uses: actions/checkout@v2
+    - name: 使用cache
+      id: cache-swiftlane
+      uses: actions/cache@v3
+      env:
+        cache-name: cache-swiftlane
+        path: ~/
+        key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/Package.swift') }}
+        restore-keys: |
+            ${{ runner.os }}-build-${{ env.cache-name }}-
+            ${{ runner.os }}-build-
+            ${{ runner.os }}-
+
+    - if: ${{ steps.cache-swiftlane.outputs.cache-hit != 'true' }}
+      name: 测试暂存
+      run: ls -al
     - name: 安装fastlane
       uses: it-boyer/iFastlane@main
       with:

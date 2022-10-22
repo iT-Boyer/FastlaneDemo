@@ -2,15 +2,18 @@ name: 测试unitdemo命令
 # 触发条件
 on:
   workflow_dispatch:
-  push:
-    branches: [ main ]
-  pull_request:
-    branches:
-      - '*'
+  # push:
+  #   branches: [ main ]
+  # pull_request:
+  #   branches:
+      # - '*'
 # 执行的任务
 jobs:
-  unit_tests:
+  Unit_job:
     runs-on: macos-latest
+    default:
+      run:
+        working-directory: ~/hsg/
     steps:
     - name: Setup Swift
       uses: swift-actions/setup-swift@v1.18.0
