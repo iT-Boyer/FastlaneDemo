@@ -35,4 +35,6 @@ jobs:
       shell: bash
       run: echo "/Users/runner/work/_actions/it-boyer/iFastlane/main" >> $GITHUB_PATH
     - name: 使用swiftlane
-      run: swifttlane lane swiftTest
+      run: |
+        ls -al /Users/runner/work/_actions/it-boyer/iFastlane/main
+        swifttlane lane swiftTest
