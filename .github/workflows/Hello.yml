@@ -1,0 +1,40 @@
+name: 测试githubworkflow语法
+# 触发条件
+on:
+  workflow_dispatch:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches:
+      - '*'
+# 执行的任务
+jobs:
+  Unit_job:
+    runs-on: macos-latest
+    default:
+      run:
+        working-directory: ~/hsg/
+    steps:
+    - name: Repository checkout
+      uses: actions/checkout@v2
+    - name: shell默认目录
+      run: |
+        pwd
+        ls -al
+        mkdir testdir/
+        echo "使用暂存" >> ~/testdir/cache.txt
+    - name: 使用cache
+      id: cache-swiftlane
+      uses: actions/cache@v3
+      env:
+        cache-name: cache-testdir
+        path: hsg/testdir
+        key: ${{ runner.os }}-build-${{ env.cache-name }}
+        restore-keys: |
+            ${{ runner.os }}-build-${{ env.cache-name }}-
+            ${{ runner.os }}-build-
+            ${{ runner.os }}-
+
+    - if: ${{ steps.cache-swiftlane.outputs.cache-hit != 'true' }}
+      name: 无缓存记录
+      run: ls -al
