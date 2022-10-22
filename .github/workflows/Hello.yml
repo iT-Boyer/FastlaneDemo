@@ -35,21 +35,3 @@ jobs:
     - name: 查看上一次暂存的信息
       run: |
         cat testdir/cache.txt
-
-    - name: 执行swift-spm暂存操作
-      uses: actions/cache@v3
-      with:
-        path: .build  #暂存项目内容
-        key: ${{ runner.os }}-spm-${{ hashFiles('**/Package.resolved') }}
-        restore-keys: |
-          ${{ runner.os }}-spm-
-
-    - name: 执行UnitDemo暂存操作
-      id: cache-unitdemo
-      uses: actions/cache@v3
-      with:
-        path: |
-          ~/work/_actions/it-boyer/UnitDemo/main
-        key: ${{ runner.os }}-spm-${{ hashFiles('**/Package.resolved') }}
-        restore-keys: |
-          ${{ runner.os }}-spm-
