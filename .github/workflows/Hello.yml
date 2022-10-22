@@ -20,7 +20,6 @@ jobs:
     - name: shell默认目录
       run: |
         pwd
-        cat testdir/catche.txt
         mkdir testdir
         echo "使用暂存" >> testdir/cache.txt
         ls -al
