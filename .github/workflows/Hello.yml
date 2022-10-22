@@ -35,3 +35,5 @@ jobs:
     - name: 查看上一次暂存的信息
       run: |
         cat testdir/cache.txt
+    - name: 远程文件脚本
+      run: .github/remote-run it-boyer/UnitDemo Unit --a 我是远程swift脚本
