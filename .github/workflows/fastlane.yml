@@ -24,7 +24,7 @@ jobs:
           ~/work/_actions/it-boyer/iFastlane/main
         key: ${{ runner.os }}-spm-${{ hashFiles('**/Package.resolved') }}
         restore-keys: |
-          ${{ runner.os }}-spm-
+          ${{ runner.os }}-spm-swiftlane
     - if: ${{ steps.cache-swiftlane.outputs.cache-hit != 'true' }}
       name: 安装swiftlane
       uses: it-boyer/iFastlane@main

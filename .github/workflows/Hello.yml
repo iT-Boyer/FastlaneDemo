@@ -35,3 +35,8 @@ jobs:
     - name: 查看上一次暂存的信息
       run: |
         cat testdir/cache.txt
+     - name: brew 安装
+       run: |
+        /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+        brew install xcbeautify
+        brew config
