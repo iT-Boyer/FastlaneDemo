@@ -17,14 +17,6 @@ jobs:
     steps:
     - name: Repository checkout
       uses: actions/checkout@v2
-    - name: shell默认目录
-      run: |
-        pwd
-        ls -al
-        mkdir testdir
-        echo "使用暂存" >> testdir/cache.txt
-        cat testdir/cache.txt
-        ls -al
     - name: 使用cache
       id: cache-unitdemo
       uses: actions/cache@v3
@@ -34,6 +26,14 @@ jobs:
         path: |
           ~/testdir
         key: ${{ runner.os }}-${{ env.cache-name }}
+    - name: shell默认目录
+      run: |
+        pwd
+        ls -al
+        mkdir testdir
+        echo "使用暂存" >> testdir/cache.txt
+        cat testdir/cache.txt
+        ls -al
 
     - name: 暂存 swift
       uses: actions/cache@v3
