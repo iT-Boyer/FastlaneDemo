@@ -43,3 +43,11 @@ jobs:
       run: |
         print("我是swift打印出来的")
       shell: swift {0}
+
+
+
+# Local Variables:
+# quickrun-option-cmdopt: "-MScalar::Util=looks_like_number -Mutf8"
+# quickrun-option-args:   "Hello.yml"
+# quickrun-option-outputter: file:qr_test.txt
+# End:
