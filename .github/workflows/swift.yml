@@ -25,7 +25,7 @@ jobs:
 
     - if: ${{ steps.cache-swiftlane.outputs.cache-hit != 'true' }}
       name: 安装swiftlane
-      working-directory: ${HOME}
+      working-directory: /Users/runner/work
       run: |
         pwd
         git clone https://github.com/it-boyer/iFastlane.git
@@ -33,7 +33,16 @@ jobs:
         swift build
       shell: bash
 
+    - if: ${{ steps.cache-swiftlane.outputs.cache-hit == 'true' }}
+      name: 更新swiftlane
+      working-directory: /Users/runner/work/iFastlane
+      run: |
+        git pull origin main
+        swift build
+      shell: bash
+
+
     - name: 发布iPA
-      run: ${HOME}/iFastlane/.build/debug/Runner lane swiftBuild
+      run: /Users/runner/work/iFastlane/.build/debug/Runner lane swiftBuild
       working-directory: iFastlane
       shell: bash
