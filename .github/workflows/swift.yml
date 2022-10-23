@@ -44,5 +44,4 @@ jobs:
 
     - name: 发布iPA
       run: /Users/runner/work/iFastlane/.build/debug/Runner lane swiftBuild
-      working-directory: iFastlane
       shell: bash
