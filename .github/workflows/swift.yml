@@ -18,20 +18,22 @@ jobs:
       id: cache-swiftlane
       uses: actions/cache@v3
       with:
-        path: iFastlane
+        path: ~/iFastlane
         key: ${{ runner.os }}-spm-${{ hashFiles('**/Package.resolved') }}
         restore-keys: |
           ${{ runner.os }}-spm-
 
     - if: ${{ steps.cache-swiftlane.outputs.cache-hit != 'true' }}
       name: 安装swiftlane
+      working-directory: ${HOME}
       run: |
+        pwd
         git clone https://github.com/it-boyer/iFastlane.git
         cd iFastlane
         swift build
       shell: bash
 
     - name: 发布iPA
-      run: .build/debug/Runner lane swiftBuild
+      run: ${HOME}/iFastlane/.build/debug/Runner lane swiftBuild
       working-directory: iFastlane
       shell: bash
