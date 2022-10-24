@@ -51,7 +51,7 @@ jobs:
       uses: actions/upload-artifact@v2.2.0
       with:
         name: 'FastlaneDemo'
-        path: FastlaneDemo.ipa
+        path: ./FastlaneDemo.ipa
 
     - name: 制作iPA上传到apptize服务器上
       run: |
