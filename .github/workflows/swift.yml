@@ -1,4 +1,4 @@
-name: 部署发布iPA包
+name: blink方法部署发布iPA包
 # 触发条件
 on:
   workflow_dispatch:
@@ -40,6 +40,7 @@ jobs:
         git pull origin main
         swift build
         echo "~/work/iFastlane/.build/debug/" >> $GITHUB_PATH
+        brew bundle
       shell: bash
 
     - name: lane生成不签名的测试包
