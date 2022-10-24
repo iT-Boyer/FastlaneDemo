@@ -34,13 +34,16 @@ jobs:
       shell: bash
 
     - if: ${{ steps.cache-swiftlane.outputs.cache-hit == 'true' }}
-      name: lane生成不签名的测试包
+      name: 更新swiftlane
       working-directory: /Users/runner/work/iFastlane
       run: |
         git pull origin main
         swift build
         echo "~/work/iFastlane/.build/debug/" >> $GITHUB_PATH
-        Runner lane blinkBuild
+      shell: bash
+
+    - name: lane生成不签名的测试包
+      run: Runner lane blinkBuild
       shell: bash
 
     - name: upload ipa
