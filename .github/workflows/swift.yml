@@ -34,14 +34,24 @@ jobs:
       shell: bash
 
     - if: ${{ steps.cache-swiftlane.outputs.cache-hit == 'true' }}
-      name: 更新swiftlane
+      name: lane生成不签名的测试包
       working-directory: /Users/runner/work/iFastlane
       run: |
         git pull origin main
         swift build
+        echo "~/work/iFastlane/.build/debug/" >> $GITHUB_PATH
+        Runner lane blinkBuild
       shell: bash
 
+    - name: upload ipa
+      uses: actions/upload-artifact@v2.2.0
+      with:
+        name: 'FastlaneDemo'
+        path: FastlaneDemo.ipa
 
-    - name: 发布iPA
-      run: /Users/runner/work/iFastlane/.build/debug/Runner lane swiftBuild
-      shell: bash
+    - name: 制作iPA上传到apptize服务器上
+      run: |
+          mkdir Payload
+          mv build/*/Products/Applications/FastlaneDemo.app Payload/
+          zip -r FastlaneDemo.ipa Payload
+          Runner lane appetize path FastlaneDemo.ipa
